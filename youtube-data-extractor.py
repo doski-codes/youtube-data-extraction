@@ -12,6 +12,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--query", "-q", help="Set a search query", default="#endsars")
 parser.add_argument("--results", "-r", help="Set the number of videos to search for. \
                                             Should be between 0 and 50", default=10)
+parser.add_argument("--duration", "-d", help="Set a duration for videos being searched for", \
+                                        default="medium", choices=['any', 'short', 'medium', 'long'])
 
 # Read arguments from the command line
 args = parser.parse_args()
@@ -19,6 +21,7 @@ args = parser.parse_args()
 # Store argument values in variables for use
 query = args.query
 results = args.results
+duration = args.duration
 
 # Youtube API KEY
 API_KEY = "ENTER_YOUR_YOUTUBE_DATA_V3_API_KEY"
@@ -28,11 +31,11 @@ youtube = build('youtube', 'v3', developerKey=API_KEY)
 
 # Search for results based on a query (default query is '#endsars')
 # maximum allowed results = 50, default = 10
-def search(query='#endsars', results=10):
+def search(query, results, duration):
     request = youtube.search().list(
         part = 'snippet',
         q = query,
-        videoDuration = 'medium',
+        videoDuration = duration,
         type = 'video',
         maxResults = results,
         publishedAfter = pd.to_datetime('2020').strftime('%Y-%m-%dT%H:%M:%SZ')
@@ -40,10 +43,10 @@ def search(query='#endsars', results=10):
     return request.execute()
 
 # Create dataframe from search results
-def create_search_df(query, results):
+def create_search_df(query, results, duration):
     data = []
 
-    for item in search(query, results)['items']:
+    for item in search(query, results, duration)['items']:
         row = {
             'id': item['id']['videoId'],
             'title': item['snippet']['title'],
@@ -92,7 +95,8 @@ def save(df):
 
 
 def main():
-    search_df = create_search_df(query, results)
+    # Run functions to search youtube and extract the results to a .csv file
+    search_df = create_search_df(query, results, duration)
     stats = search_df['id'].apply(video_stats)
     stats_df = create_stats_df(stats)
     df = final_df(search_df, stats_df)
