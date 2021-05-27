@@ -43,12 +43,12 @@ or
 
 ### Arguments
 
-1. `-q, --query` : Specify the search query. The default value is _'#endsars'_.
+`-q, --query` : Specify the search query. The default value is _'#endsars'_.
 
-2. `-r, --results`: Specify how many items to include the search results. The allowed input
+`-r, --results`: Specify how many items to include the search results. The allowed input
 should be an integer from _0 to 50_. The default value is _10_.
 
-3. `-t, --duration`: Specify how long the videos from the search results should be.
+`-t, --duration`: Specify how long the videos from the search results should be.
 
 Options:
 - any: Any video length.
@@ -58,5 +58,5 @@ Options:
 
 The default value is _medium_.
 
-4. `-d, --date`: Specify a date to filter the search results from. The default value is
+`-d, --date`: Specify a date to filter the search results from. The default value is
 _01-01-2020_.
