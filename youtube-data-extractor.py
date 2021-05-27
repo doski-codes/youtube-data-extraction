@@ -14,6 +14,7 @@ parser.add_argument("--results", "-r", help="Set the number of videos to search 
                                             Should be between 0 and 50", default=10)
 parser.add_argument("--duration", "-d", help="Set a duration for videos being searched for", \
                                         default="medium", choices=['any', 'short', 'medium', 'long'])
+parser.add_argument("--date", "-d", help="Date after wihich videos should be retrieved", default="2020")
 
 # Read arguments from the command line
 args = parser.parse_args()
@@ -22,6 +23,7 @@ args = parser.parse_args()
 query = args.query
 results = args.results
 duration = args.duration
+date = arge.date
 
 # Youtube API KEY
 API_KEY = "ENTER_YOUR_YOUTUBE_DATA_V3_API_KEY"
@@ -31,22 +33,22 @@ youtube = build('youtube', 'v3', developerKey=API_KEY)
 
 # Search for results based on a query (default query is '#endsars')
 # maximum allowed results = 50, default = 10
-def search(query, results, duration):
+def search(query, results, duration, date):
     request = youtube.search().list(
         part = 'snippet',
         q = query,
         videoDuration = duration,
         type = 'video',
         maxResults = results,
-        publishedAfter = pd.to_datetime('2020').strftime('%Y-%m-%dT%H:%M:%SZ')
+        publishedAfter = pd.to_datetime(date).strftime('%Y-%m-%dT%H:%M:%SZ')
     )
     return request.execute()
 
 # Create dataframe from search results
-def create_search_df(query, results, duration):
+def create_search_df(query, results, duration, date):
     data = []
 
-    for item in search(query, results, duration)['items']:
+    for item in search(query, results, duration, date)['items']:
         row = {
             'id': item['id']['videoId'],
             'title': item['snippet']['title'],
