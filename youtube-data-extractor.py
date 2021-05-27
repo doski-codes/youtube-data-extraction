@@ -98,7 +98,7 @@ def save(df):
 
 def main():
     # Run functions to search youtube and extract the results to a .csv file
-    search_df = create_search_df(query, results, duration)
+    search_df = create_search_df(query, results, duration, date)
     stats = search_df['id'].apply(video_stats)
     stats_df = create_stats_df(stats)
     df = final_df(search_df, stats_df)
