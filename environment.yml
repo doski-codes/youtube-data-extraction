@@ -1,0 +1,10 @@
+name: youtube-data-env
+channels:
+  - defaults
+dependencies:
+  - python
+  - pandas
+  - pip
+  - pip :
+      - -r file:requirements.txt
+prefix: /Users/doski/miniconda3/envs/youtube-data-env
