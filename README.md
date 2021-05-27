@@ -51,10 +51,10 @@ should be an integer from _0 to 50_. The default value is _10_.
 `-t, --duration`: Specify how long the videos from the search results should be.
 
 Options:
-    - any: Any video length.
-    - short: Videos length between 0 and 4 minutes.
-    - medium: Video length between 4 and 20 minutes (inclusive).
-    - long: Video length greater than 20 minutes.
+- any: Any video length.
+- short: Videos length between 0 and 4 minutes.
+- medium: Video length between 4 and 20 minutes (inclusive).
+- long: Video length greater than 20 minutes.
 
 The default value is _medium_.
 
