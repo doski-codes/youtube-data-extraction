@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--query", "-q", help="Set a search query", default="#endsars")
 parser.add_argument("--results", "-r", help="Set the number of videos to search for. \
                                             Should be between 0 and 50", default=10)
-parser.add_argument("--duration", "-d", help="Set a duration for videos being searched for", \
+parser.add_argument("--duration", "-t", help="Set a duration for videos being searched for", \
                                         default="medium", choices=['any', 'short', 'medium', 'long'])
 parser.add_argument("--date", "-d", help="Date after wihich videos should be retrieved", default="2020")
 
