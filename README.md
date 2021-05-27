@@ -6,7 +6,7 @@ Using a Python script to extract data from YouTube using the YouTube Data API V3
 and extract the results to a .csv file.
 
 To use the script, you'll require access to the YouTube API. Go to
-[Data API](https://developers.google.com/youtube/v3/getting-started) and follow the
+[YouTube Data API](https://developers.google.com/youtube/v3/getting-started) and follow the
 steps to enable you access the Data API with your own `API_KEY`
 
 ## 2. Environment
